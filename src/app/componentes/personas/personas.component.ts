@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PERSONAS } from "../../mock-personas";
 import { Persona, Alert } from 'src/app/personas';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
 const ALERTS: Alert[] = [];
@@ -18,16 +17,14 @@ export class PersonasComponent implements OnInit {
   personas = PERSONAS;
   actual: Persona;  
 
-  constructor( config: NgbModalConfig, private modalService: NgbModal ) {
-    config.backdrop = 'static';
-    config.keyboard = false;
+  constructor( ) {
+
     this.reset();
    }
 
   ngOnInit() {
 
   }
-
 
   close(alert: Alert) {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -39,36 +36,25 @@ export class PersonasComponent implements OnInit {
 
   addAlerts(){
     this.alerts.push({
-      type: 'dark',
-      message: 'Hola a todos',
+      type: 'primary',
+      message: 'alerta generada con ng-Bootstrap', 
     });
   }
-
-  showModal(){
-    Swal.mixin({
-      input: 'text',
-      confirmButtonText: 'Next &rarr;',
-      showCancelButton: true,
-      progressSteps: ['1', '2', '3']
-    }).queue([
-      {
-        title: 'Question 1',
-        text: 'Chaining swal2 modals is easy'
-      },
-      'Question 2',
-      'Question 3'
-    ]).then((result) => {
-      if (result.value) {
-        const answers = JSON.stringify(result.value)
-        Swal.fire({
-          title: 'All done!',
-          html: `
-            Your answers:
-            <pre><code>${answers}</code></pre>
-          `,
-          confirmButtonText: 'Lovely!'
-        })
-      }
+  addAlert( persona: Persona ){
+    this.alerts.push({
+      type: 'primary',
+      message: persona.nombre + " se describe así: "+ persona.descripcion, 
+    });
+  }
+  
+  showModal(persona: Persona){
+    Swal.fire({
+      icon: 'info',
+      title: persona.nombre + " " + persona.apellido,
+      text: persona.descripcion,
+      footer: '<a href="https://github.com/JoelTapia99/DisenioProgramacion2">Ir al repositorio del proyecto</a>'
     })
+    this.addAlert(persona);
+  
   }
 }

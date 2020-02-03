@@ -4,20 +4,18 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
         <th scope="col">Edad</th>
         <th scope="col">Genero</th>
-        <th scope="col">Editar</th>
+        <th scope="col">Más Información</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let persona of personas; index as i" [class.selected]="persona === actual">
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ persona.nombre }}</td>
-        <td>{{ persona.apellido }}</td>
         <td>{{ persona.edad }}</td>
         <td>{{ persona.genero }}</td>
-        <td> <button class="btn btn-lg btn-outline-primary" (click)="showModal()">Editar</button></td>
+        <td> <button class="btn btn-lg btn-outline-primary" (click)="showModal(persona)">Más</button></td>
       </tr>
     </tbody>
   </table>
@@ -25,9 +23,11 @@
 
 <div class="container">
   <p *ngFor="let alert of alerts">
-    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+    <ngb-alert [type]="alert.type" (close)="close(alert)">
+      <strong> Generado con ng-bootstrap </strong> {{ alert.message }}
+    </ngb-alert>
   </p>
   <p>
-    <button type="button" class="btn btn-primary" (click)="addAlerts()">Crear Alerta</button>
+    <button type="button" class="btn btn-primary" (click)="reset()">Borrar Historial</button>
   </p>
 </div>

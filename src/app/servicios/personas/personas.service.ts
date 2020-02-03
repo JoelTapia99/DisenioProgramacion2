@@ -28,11 +28,6 @@ export class PersonasService {
 
 
 
-
-
-
-  
-
 /*   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
