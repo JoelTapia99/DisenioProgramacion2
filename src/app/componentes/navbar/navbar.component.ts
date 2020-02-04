@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
       title: 'Autor',
       text: 'Joel Tapia, Tervero "A"',
       showConfirmButton: false,
-      timer: 1500
+      timer: 2000
     })
   }
 

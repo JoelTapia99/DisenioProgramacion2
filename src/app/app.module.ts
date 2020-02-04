@@ -9,9 +9,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DatosService } from './servicios/datos/datos.service';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { BlockUIModule } from 'ng-block-ui';
 
 @NgModule({
   declarations: [
@@ -26,9 +25,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      DatosService, { dataEncapsulation: false }
-    )
+    BlockUIModule.forRoot()
   ],
   providers: [NgbModalConfig, NgbModal],
   bootstrap: [AppComponent]
